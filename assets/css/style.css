@@ -1,0 +1,27 @@
+.container {
+  margin-top: 20px;
+}
+
+.map {
+  height: 600px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.map-legend {
+  border: 2px solid black;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+/*-- user input error message --*/
+.error {
+  color: red;
+  margin-left: 5px;
+}
+
+label.error {
+  display: inline;
+}
+
+/*-- --*/

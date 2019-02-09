@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Crime Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/leaflet.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body>
+  <header>
+    <div class="navbar navbar-light bg-light justify-content-center">
+    <h1>City of Seattle School Data</h1>
+    </div>
+  </header>
+
+  <div id="app" class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <!-- The map goes here -->
+        <div id="map" class="map"></div>
+      </div>
+      <div class="col-md-3 map-legend">
+        <h2>SCHOOL DATA</h2>
+        <form id="search-form">
+          <label for="search-input">Enter a ZIP Code</label>
+          <input id="user-input" type="text" name="search-input" class="form-control" placeholder="ex. 98133">
+          <input id="add-input" type="button" value="Submit" class="btn btn-info">
+        </form>
+        <div class="form-check" v-for="layer in layers" :key="layer.id">
+          <!-- label and input elements go here -->
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" v-model="layer.active" @change="layerChanged(layer.id, layer.active)" />
+            {{ layer.name }}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js"></script>
+  <script src="assets/javascript/leaflet/leaflet.js"></script>
+  <script src="assets/javascript/zip-codes.geojson.js"></script>
+  <script src="assets/javascript/neighborhoods.js"></script>
+  <script src="assets/javascript/main.js"></script>
+
+</body>
+
+</html>
