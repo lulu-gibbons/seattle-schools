@@ -5,50 +5,58 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Crime Map</title>
+  <title>School Map</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="stylesheet" href="assets/css/leaflet.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+  <link rel="icon" href="assets/images/icon.jpg">
 </head>
 
 <body>
-  <header>
-    <div class="navbar navbar-light bg-light justify-content-center">
-    <h1>City of Seattle School Data</h1>
-    </div>
-  </header>
+  <div class="jumbotron">
+    <header>
 
-  <div id="app" class="container">
-    <div class="row">
-      <div class="col-md-9">
-        <!-- The map goes here -->
-        <div id="map" class="map"></div>
+      <div style="background-color:transparent; text-align:center;">
+        <h1>Seattle Schools Info</p>
+          <hr>
+          <h2>Your Kid Could Go Here</h2>
       </div>
-      <div class="col-md-3 map-legend">
-        <h2>SCHOOL DATA</h2>
-        <form id="search-form">
-          <label for="search-input">Enter a ZIP Code</label>
-          <input id="user-input" type="text" name="search-input" class="form-control" placeholder="ex. 98133">
-          <input id="add-input" type="button" value="Submit" class="btn btn-info">
-        </form>
-        <div class="form-check" v-for="layer in layers" :key="layer.id">
-          <!-- label and input elements go here -->
-          <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" v-model="layer.active" @change="layerChanged(layer.id, layer.active)" />
-            {{ layer.name }}
-          </label>
+    </header>
+
+    <div id="app" class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <!-- The map goes here -->
+          <div id="map" class="map" style="opacity:0.9; border:10px solid white;"></div>
+        </div>
+        <div class="col-md-3 map-legend">
+          <form id="search-form">
+            <label for="search-input" style="font-size:30px;">Search by zip code:</label>
+            <input id="user-input" type="text" name="search-input" class="form-control" placeholder="ex. 98133">
+            <br>
+            <input id="add-input" type="button" value="Submit" class="btn btn-info">
+          </form>
+          <br>
+          <div class="form-check" v-for="layer in layers" :key="layer.id" style="font-size:25px;">
+            <!-- label and input elements go here -->
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" v-model="layer.active" @change="layerChanged(layer.id, layer.active)"
+                style="font-size:50px" />
+              {{ layer.name }}
+            </label>
+          </div>
         </div>
       </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js"></script>
+    <script src="assets/javascript/leaflet/leaflet.js"></script>
+    <script src="assets/javascript/zip-codes.geojson.js"></script>
+    <script src="assets/javascript/neighborhoods.js"></script>
+    <script src="assets/javascript/main.js"></script>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js"></script>
-  <script src="assets/javascript/leaflet/leaflet.js"></script>
-  <script src="assets/javascript/zip-codes.geojson.js"></script>
-  <script src="assets/javascript/neighborhoods.js"></script>
-  <script src="assets/javascript/main.js"></script>
-
 </body>
 
 </html>

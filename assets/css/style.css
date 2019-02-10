@@ -1,17 +1,51 @@
-.container {
-  margin-top: 20px;
-}
-
 .map {
   height: 600px;
-  border: 2px solid black;
-  border-radius: 5px;
 }
 
-.map-legend {
-  border: 2px solid black;
-  border-radius: 5px;
-  padding-left: 10px;
+#user-input {
+  background-color: transparent !important;
+}
+
+::placeholder {
+  color: white !important;
+  font-size: 25px !important;
+}
+
+hr {
+  background-color: white;
+  height: 5px !important;
+  opacity: 0.5 !important;
+}
+
+h1,
+h2,
+form,
+label,
+#user-input {
+  color: white !important;
+  font-family: 'Indie Flower', cursive !important;
+}
+
+.btn {
+  border: none !important;
+  background-color: white !important;
+  color: black !important;
+}
+
+h1 {
+  font-size: 100px !important;
+  background-color: transparent !important;
+  font-weight: 500 !important;
+}
+
+h2 {
+  font-size: 50px !important;
+}
+
+.jumbotron {
+  background-image: url("../images/sad.jpg") !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
 }
 
 /*-- user input error message --*/
@@ -23,5 +57,3 @@
 label.error {
   display: inline;
 }
-
-/*-- --*/
