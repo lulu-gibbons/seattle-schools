@@ -1,24 +1,11 @@
-// console.log(geoJson);
-
-//Prevents user from clicking enter and reloading the map
-$(document).ready(function() {
-  $(window).keydown(function(event) {
-    if (event.keyCode == 13) {
-      event.preventDefault();
-      return false;
-    }
-  });
-});
-
-//Get's a zip code from the user
-$(document).on("click", "#add-input", function(event) {
+var handler = function(event) {
 
   zipCode = $("#user-input").val();
-  console.log("zipcode:" + zipCode);
+  // console.log("zipcode:" + zipCode);
 
   $(".error").remove(); //adds an error message if user enters nothing in the input
   if (zipCode.length < 1) {
-    $('form').append('<p class="error">This field is required</p>');
+    $('form').append('<p class="error">This field is required.</p>');
   } else {
     $('#user-input').val('');
   }
@@ -31,8 +18,25 @@ $(document).on("click", "#add-input", function(event) {
   app.updateMap();
   app.initLayers();
 
-});
+}
+// console.log(geoJson);
 
+// Prevents user from clicking enter and reloading the map
+$(document).ready(function() {
+  $(window).keydown(function(event) {
+    if (event.keyCode == 13) {
+      event.preventDefault();
+      handler();
+      return false;
+    }
+  });
+});
+//Get's a zip code from the user
+$(document).on("click", "#add-input", handler);
+
+
+ 
+    
 
 function getZipcodeItem() {
   var out;
@@ -48,7 +52,6 @@ function getZipcodeItem() {
 function isValidZipCode(zip) {
   var isValid = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zip);
             if (isValid) {
-              // $('form').append('<p class="error">valid Zip Code</p>');
         } else {
           $('form').append('<p class="error">Please enter a valid zip code.</p>');
       }
@@ -120,7 +123,7 @@ const app = new Vue({
     this.initLayers();
   },
 
-  methods: { /* Functions for for the map object */
+  methods: { /* Functions for the map object */
 
     initMap() { //sets the lat/long and zoom level at document load
       this.map = L.map('map').setView([47.6097, -122.3331], 12);
@@ -135,13 +138,19 @@ const app = new Vue({
         color: '#f2a033'
       }).addTo(this.map);
       this.map.fitBounds(polygon.getBounds());
+      this.currentPolygon = polygon;
     },
-
+    currentPolygon: null,
     updateMap() {
+      if (this.currentPolygon !== null) {
+        this.map.removeLayer(this.currentPolygon);
+      }
+     
       var polygon = L.polygon(swappedArray, {
         color: '#f2a033'
       }).addTo(this.map);
       this.map.fitBounds(polygon.getBounds());
+      this.currentPolygon = polygon;
     },
 
     initLayers() {
@@ -188,7 +197,7 @@ const app = new Vue({
           if (app.layers[i].name === "Elementary") {
 
             for (var j = 0; j < data.features.length; j++) {
-              console.log(data.features[i]);
+              // console.log(data.features[i]);
               //console.log(data.features[i].attributes.TYPE);
 
               if (data.features[j].attributes.TYPE === "Elementary") {
